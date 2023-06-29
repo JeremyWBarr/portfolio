@@ -1,25 +1,50 @@
-import logo from './logo.svg';
-import './App.css';
+import { Helmet } from "react-helmet"
+import './App.css'
+import Header from './Header'
+import BG from './bg'
+
+import About from './pages/About'
+import Projects from './pages/Projects'
+import CV from './pages/CV'
+import Games from './pages/Games'
+import Contact from './pages/Contact'
 
 function App() {
+  let body
+
+  switch(window.location.pathname) {
+    case '/':
+      body = <About />
+      break
+    case '/about':
+      body = <About />
+      break
+    case '/projects':
+      body = <Projects />
+      break
+    case '/cv':
+      body = <CV />
+      break
+    case '/games':
+      body = <Games />
+      break
+    case '/contact':
+      body = <Contact />
+      break
+    default:
+      body = <About />
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <Helmet>
+        <script src="scrollManager.js" type="text/javascript"></script>
+      </Helmet>
+      <Header />
+      <BG />
+      {body}
+    </>
+  )
 }
 
-export default App;
+export default App
